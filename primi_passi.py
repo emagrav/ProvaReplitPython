@@ -32,3 +32,14 @@ frase2 = frase.replace(frase[-4:],"TarANTo",1)
 print(frase2)
 frase2 = frase.replace(frase[-4:],"TarANTo")
 print(frase2)
+
+voto = 6.1
+sufficiente = (voto >= 6.0) 
+             # espr1   if    espr2    else    espr3
+risultato = 'promosso' if sufficiente else 'bocciato' # operatore ternario
+print(risultato)
+
+#None Indica il valore nullo in python. Equivale al null del C o di java. Il valore None si può testare con l'operatore is.
+X = None
+print('X è nullo?:', X is None)
+type(X)
