@@ -1,3 +1,4 @@
+print ("*****FUNZIONI.PY*******")
 def somma(a,b):
     ris=a+b
     return (ris)
