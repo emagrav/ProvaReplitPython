@@ -1,12 +1,20 @@
+import sys
 def divisore(a,b):
-    try:
-        ris = a / b
-        print("il risultto della divisione è:", ris)
-    except ZeroDivisionError:
-        print('Hai una divisione per zero.')
-
-divisore(4,2)
-divisore(5,0)
+    ris = a / b
+    return ris
+    
+try:
+    print("Primo tenttivo;",divisore(4,2))
+    #print("Secondo tenttivo;",divisore(5,0))
+    print("Terzo tenttivo;",divisore("s",2))
+except ZeroDivisionError as err:
+    print('Hai una divisione per zero. {0}'.format(err))
+except TypeError as err:
+    print('Hai inserito caratteri non numerici. {0}'.format(err))
+except:
+    print("Unexpected error:", sys.exc_info()[0])
+finally:
+    print('comunque sia riesco a salutari. Fico!')
 
 def moltiplicatore():
     try:
@@ -16,4 +24,4 @@ def moltiplicatore():
         print("Risultato:", ris)
     except ValueError:
         print('Inserisci solo numeri interi')
-moltiplicatore()
+#moltiplicatore()
