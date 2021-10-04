@@ -53,3 +53,10 @@ print('\u2665')
 
 print(ord("K"))
 print(chr(75))
+
+s="fjsfjksl"
+print(s.isalpha())
+
+l=('a','b','c')
+print(' '.join(l))
+print(':'.join(l))
