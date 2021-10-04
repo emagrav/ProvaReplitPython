@@ -30,7 +30,3 @@ for i in range(10):
 
 collected=gc.collect()
 print("Garbage collector: %d oggetti collezionati" %(collected))
-
-
-print('\u272A') #Unicode
-print('\u2665')

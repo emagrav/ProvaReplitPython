@@ -48,5 +48,8 @@ type(X)
 print(int('0x7b',base=16)) #trasformo un esadecimale in intero
 print(int('33',base=8)) #trasformo un ottale in intero
 
+print('\u272A') #Unicode
+print('\u2665')
 
 print(ord("K"))
+print(chr(75))
