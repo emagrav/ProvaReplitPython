@@ -57,6 +57,20 @@ print(chr(75))
 s="fjsfjksl"
 print(s.isalpha())
 
+# unisco elementi in una stringa con un separatore
 l=('a','b','c')
 print(' '.join(l))
-print(':'.join(l))
+l2=':'.join(l)
+print(l2)
+#ottenere lista di elementi da stringa con separatori dentro
+l3=l2.split(":")
+print(l3)
+
+# togliere spazi a destra e a sinistra
+s="    sdfsdfs     "
+print('>>'+s+'<<')
+
+z='>>'+s.strip()+'<<'
+print(z)
+print(z.strip('>>').strip('<<'))
+
