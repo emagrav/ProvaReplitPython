@@ -77,8 +77,8 @@ print(z.strip('>>').strip('<<'))
 # Differenza tra extend e append sulle liste
 a=[1,2,3,45,65]
 b=[1,2,3,45,65]
-a.append([66,88]) # in questo caso aggiungo un elemento che la lista come parametro
+a.append([66,88]) # in questo caso aggiungo un elemento alla lista che è essa stessa una lista
 print(a)
 
-b.extend([66,88]) # in quest'altro caso invece estendo la lista con gli elementi della lista come parametro
+b.extend([66,88]) # in quest'altro caso invece estendo la lista con gli elementi della lista fornita come parametro
 print(b)
