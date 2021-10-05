@@ -5,7 +5,7 @@ import csv
 comune = []
 MONUMENTO = []
 
-with open("monumenti_unix.csv") as filecsv:
+with open("Files/monumenti_unix.csv") as filecsv:
   lettore=csv.reader(filecsv, delimiter=";")
   
   for parola in lettore:
