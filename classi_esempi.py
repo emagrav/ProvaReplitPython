@@ -22,6 +22,14 @@ class Persona:
 
     return cls(nome,cognome,eta,green)
  
+  @staticmethod
+  def info_prog(s):
+    info = """
+    Nome: Persona
+    Creato da: Emanuele
+    Commenti; scritto usando Python 3
+      """
+    return info + s
   def stampa(self):
     return f"Scheda Persona\n Nome:{self.nome}\n Cognome:{self.cognome}\n Greenpass:{self.green}"
   
@@ -71,3 +79,5 @@ with open("Files/elenco_studenti.csv") as filecsv:
   lettore=csv.reader(filecsv,delimiter=";")
   for riga in lettore:
     print(riga)
+
+print(Studente.info_prog("ciao")) #richiamo di un metodo statioco

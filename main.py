@@ -1,6 +1,6 @@
 #import primi_passi
 #import standard_library
-import funzioni
+#import funzioni
 #import disassemblare
 #import conteggio_dei_riferimenti
 #import garbage_collection
@@ -11,4 +11,5 @@ import funzioni
 #import youtube_dwnld
 #import file_shutil_e_os
 #import file_zip_esempi
-import classi_esempi
+#import classi_esempi
+import wrapper
