@@ -4,4 +4,7 @@
 #import disassemblare
 #import conteggio_dei_riferimenti
 #import garbage_collection
-import liste
+#import liste
+#import insiemi
+#import file_esercizi
+import file_audio
