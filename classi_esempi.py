@@ -11,15 +11,16 @@ class Persona:
     self.eta=eta
     #self.corso=corso
     self.green=green
-  
-  def __init__(self, lista):
+
+  @classmethod #costruttore alternativo!!!
+  def inizializza(cls, lista):
     #nome,cognome,eta,corso,green=lista.split(';') #interessante al posto di una lista, posso mettere tante variabili a sinistra quanti sono gli elementi
     nome=lista[0]
     cognome=lista[1]
     eta=lista[2]
     green=lista[3]
 
-    self.__init__(self,nome,cognome,eta,green)
+    return cls(nome,cognome,eta,green)
  
   def stampa(self):
     return f"Scheda Persona\n Nome:{self.nome}\n Cognome:{self.cognome}\n Greenpass:{self.green}"
@@ -41,13 +42,13 @@ print(dati)
 
 
 for i in range(1,len(dati)):
-  p = Persona(dati[i])
+  p = Persona.inizializza(dati[i])
   print(p.stampa())
   print(p.dizionario())
   print()
 
 #######
-'''
+
 class Studente(Persona): #Studente eredita da Persona
   def __init__(self,nome,cognome,eta,green,corso):
     super().__init__(nome,cognome,eta,green) #richiamo l'init della superclasse
@@ -58,9 +59,15 @@ class Studente(Persona): #Studente eredita da Persona
     Nome: {self.nome}
     Cognome: {self.cognome}
     Età: {self.eta}
+    Greenpass?: {self.green}
+    Corso : {self.corso}
     +++"""
     return scheda
 
-studente_uno = Studente("Paolo", "Cognome", "44", True,"Informatica")
+studente_uno = Studente("Paolo", "Gnomo", "44", True,"Informatica")
 print(studente_uno.scheda_personale())
-'''
+
+with open("Files/elenco_studenti.csv") as filecsv:
+  lettore=csv.reader(filecsv,delimiter=";")
+  for riga in lettore:
+    print(riga)
