@@ -10,4 +10,5 @@
 #import file_audio
 #import youtube_dwnld
 #import file_shutil_e_os
-import file_zip_esempi
+#import file_zip_esempi
+import classi_esempi
