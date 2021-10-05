@@ -1,8 +1,8 @@
 print("****WRAPPER*****")
 
+#due modi di usare la tecncia del wrapping
 
 from functools import wraps
-import wrapper
 
 def caps_lock(funzione_parametro):
   @wraps(funzione_parametro)
@@ -11,10 +11,14 @@ def caps_lock(funzione_parametro):
   return wrapper
 
 @caps_lock
-def mia_funzione()
+def mia_funz():
   return "sono piccolo ma carino"
 
-def funzione_decoratore(funzione_parametro)
+print(mia_funz())
+
+#########
+
+def funzione_decoratore(funzione_parametro):
   def wrapper():
     print("... codice da eseguire prima di funzione parametro")
     funzione_parametro()
@@ -22,7 +26,6 @@ def funzione_decoratore(funzione_parametro)
   return wrapper()
 
 def mia_funzione():
-    print("CIAO!!!")
-    return "CIAO!!!!!"
-
-mia_funz = funzione_decoratore(mia_funzione)
+    print("sono piccolo ma carino")
+    
+funzione_decoratore(mia_funzione)
