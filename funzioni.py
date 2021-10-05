@@ -1,4 +1,5 @@
 print ("*****FUNZIONI.PY*******")
+'''
 def somma(a,b):
     ris=a+b
     return (ris)
@@ -32,3 +33,21 @@ print (funzione_che_usa_var_globale_2())
 # PERTANTO LE VARIABILI GLOBALI POSSONO ESSERE tranquillamente LETTE MA NON MODIFICATE 
 # all'interno di una funzione.
 # SE LE SI VUOLE MODIFICARE, DEVONO ESSERE DICHIARATE come GLOBAL 
+'''
+############
+def stampa_numeri(a,b,*args): # in args arriva una tupla con gli ultimi elementi passati
+  print(f'a è {a}')
+  print(f'b è {b}')
+  print(f'args è {args}')
+
+print(stampa_numeri(1,33,4,5,6,7))
+print("fine")
+
+#########
+def stampa_numeri2(a,b,**kwargs): # in kwargs arriva un dizionari con gli ultimi elementi passati per nome
+  print(f'a è {a}')
+  print(f'b è {b}')
+  print(f'args è {kwargs}')
+
+print(stampa_numeri2(1,33,c=1,d=2))
+print("fine")

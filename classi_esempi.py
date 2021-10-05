@@ -2,36 +2,38 @@ print("********* CLASSI ESEMPI ******")
 import csv
 class Persona:
   '''
-    def __init__(self,nome,cognome,corso,green_pass):
+    def __init__(self,nome,cognome,green_pass):
     pass
   '''  
+  def __init__(self, nome, cognome, eta, green):
+    self.nome=nome
+    self.cognome=cognome
+    self.eta=eta
+    #self.corso=corso
+    self.green=green
+  
   def __init__(self, lista):
     #nome,cognome,eta,corso,green=lista.split(';') #interessante al posto di una lista, posso mettere tante variabili a sinistra quanti sono gli elementi
     nome=lista[0]
     cognome=lista[1]
     eta=lista[2]
-    corso=lista[3]
-    green=lista[4]
+    green=lista[3]
 
-    self.nome=nome
-    self.cognome=cognome
-    self.eta=eta
-    self.corso=corso
-    self.green=green
-  
+    self.__init__(self,nome,cognome,eta,green)
+ 
   def stampa(self):
-    return f"Scheda Studente\n Nome:{self.nome}\n Cognome:{self.cognome}\n Corso:{self.corso}\n Greenpass:{self.green}"
+    return f"Scheda Persona\n Nome:{self.nome}\n Cognome:{self.cognome}\n Greenpass:{self.green}"
   
   def dizionario(self):
     d={}
     chiave = self.nome + " " + self.cognome
-    valore = self.eta + " " + self.corso + " " + self.green
+    valore = self.eta + " " + self.green
     d[chiave]=valore
     return d
   
 #stud1 = Studente("Giacomo;Leopardi;99;Letteratura;True")
 dati=[]
-with open("Files/elenco_studenti.csv") as filecsv:
+with open("Files/elenco_persone.csv") as filecsv:
   lettore=csv.reader(filecsv,delimiter=";")
   for parola in lettore:
     dati.append(parola)
@@ -43,3 +45,22 @@ for i in range(1,len(dati)):
   print(p.stampa())
   print(p.dizionario())
   print()
+
+#######
+'''
+class Studente(Persona): #Studente eredita da Persona
+  def __init__(self,nome,cognome,eta,green,corso):
+    super().__init__(nome,cognome,eta,green) #richiamo l'init della superclasse
+    self.corso=corso #aggiunho il nuovo parametro di inizializzazione della classe
+  
+  def scheda_personale(self):
+    scheda = f"""
+    Nome: {self.nome}
+    Cognome: {self.cognome}
+    Età: {self.eta}
+    +++"""
+    return scheda
+
+studente_uno = Studente("Paolo", "Cognome", "44", True,"Informatica")
+print(studente_uno.scheda_personale())
+'''
