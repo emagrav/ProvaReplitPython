@@ -40,3 +40,19 @@ mio_diz.setdefault(3.14,"pi greco!!!")
 mio_diz.setdefault("birra","Corona Extra")
 
 print(mio_diz)
+
+########
+diction = {}
+diction["a"] = "abello"
+diction["b"] = "brutto"
+diction["k"] = "ketteridi"
+
+b=diction.copy() #creo una copia del dizionario
+
+print("D1=",diction)
+print("Copy1=",b)
+
+del b["k"] # cancello un elemento del dzionario copia
+
+print("D2=",diction)
+print("Copy2=",b)

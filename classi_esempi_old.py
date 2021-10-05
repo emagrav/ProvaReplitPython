@@ -4,7 +4,8 @@ class Persona:
   '''
     def __init__(self,nome,cognome,corso,green_pass):
     pass
-  '''  
+  ''' 
+  d={} 
   def __init__(self, lista):
     #nome,cognome,eta,corso,green=lista.split(';') #interessante al posto di una lista, posso mettere tante variabili a sinistra quanti sono gli elementi
     nome=lista[0]
@@ -18,15 +19,17 @@ class Persona:
     self.eta=eta
     self.corso=corso
     self.green=green
-  
+      
   def stampa(self):
     return f"Scheda Studente\n Nome:{self.nome}\n Cognome:{self.cognome}\n Corso:{self.corso}\n Greenpass:{self.green}"
   
-  def dizionario(self):
-    d={}
+  def add_dizionario(self):
+    global d
     chiave = self.nome + " " + self.cognome
     valore = self.eta + " " + self.corso + " " + self.green
     d[chiave]=valore
+
+  def get_dizionario(self):
     return d
   
 #stud1 = Studente("Giacomo;Leopardi;99;Letteratura;True")
@@ -41,5 +44,9 @@ print(dati)
 for i in range(1,len(dati)):
   p = Persona(dati[i])
   print(p.stampa())
-  print(p.dizionario())
-  print()
+  p.add_dizionario()
+  if i==len(dati)-1:
+    print()
+    print(p.get_dizionario()) #mi stampa solo l'ultimo non so perché. Da verificare
+
+
