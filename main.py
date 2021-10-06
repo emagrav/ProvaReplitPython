@@ -20,6 +20,8 @@
 #import numpy_esempio
 #import scope_esercizi
 #import classe_cane_esempio
-import classi_esempi2
+#import classi_esempi2
+import iteratori
+
 if __name__ == "__main__":
   print("Io sono il main")

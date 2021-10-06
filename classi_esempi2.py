@@ -35,7 +35,7 @@ class SuperStudente(es.Persona, Universita):
     Universita.__init__(self,corso, sede, aula, docente)
   
   def __str__(self):
-    return es.Persona.__str__(self) +  Universita.__str__(self)
+    return es.Persona.__str__(self) + ", esami " + self.esami + "\n" + Universita.__str__(self)
 
-giovanni = SuperStudente("Giovanni", "Ginger", "33", False,"tanti", "Religione", "Roma sede", "aula magna", "the best teacher")
+giovanni = SuperStudente("Giovanni", "Ginger", "33", False, "tanti", "Religione", "Roma sede", "aula magna", "the best teacher")
 print(giovanni)
