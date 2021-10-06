@@ -27,9 +27,15 @@ mesi = "Gennaio Febbraio Marzo".split()
 entrate = [300, 260, 444]
 spese = [100, 320, 80]
 
-zippone = zip(mesi, entrate, spese)
-print("Zip = ", zippone)
+print("Zip = ", list(zip(mesi, entrate, spese)))
 
-for mese, entrata, spesa in zippone:
+for mese, entrata, spesa in zip(mesi, entrate, spese):
   guadagno = entrata - spesa
   print("Guadagno nel mese di {0} : {1}".format(mese, guadagno))
+
+x="5,33,16,9".split()
+y="4,14,456,213".split()
+
+aggr=zip(x,y)
+
+aggr = list(aggr)
