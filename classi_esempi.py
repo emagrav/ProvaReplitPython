@@ -74,7 +74,8 @@ for i in range(1,len(dati)):
 
 class Studente(Persona): #Studente eredita da Persona
   def __init__(self,nome,cognome,eta,green,corso):
-    super().__init__(nome,cognome,eta,green) #richiamo l'init della superclasse
+    #super().__init__(nome,cognome,eta,green) #richiamo l'init della superclasse
+    Persona.__init__(self,nome,cognome,eta,green) #alternativa a richiamare super(). L'unica differenza è che in questo caso devo passare anche self
     self.corso=corso #aggiunho il nuovo parametro di inizializzazione della classe
   
   def scheda_personale(self):
