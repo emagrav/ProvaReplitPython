@@ -17,6 +17,7 @@
 #import lambda_espressioni
 #import turtle_esempio
 #import matplotlib_esempio
-import numpy_esempio
+#import numpy_esempio
+import scope_esercizi
 if __name__ == "__main__":
   print("Io sono il main")
