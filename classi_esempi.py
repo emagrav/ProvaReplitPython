@@ -100,4 +100,8 @@ with open("Files/elenco_studenti.csv") as filecsv:
     print(riga)
     # TO DO
 
-print(Studente.info_prog("ciao")) #richiamo di un metodo statioco
+print(Studente.info_prog("ciao")) #richiamo di un metodo statico
+
+print("studente_uno è un'istanza di Persona?", isinstance(studente_uno, Persona))
+print("studente_uno è un'istanza di Studente?", isinstance(studente_uno, Studente))
+print("Studente eredita da Persona?", issubclass(Studente, Persona))

@@ -11,7 +11,7 @@
 #import youtube_dwnld
 #import file_shutil_e_os
 #import file_zip_esempi
-import classi_esempi
+#import classi_esempi
 #import wrapper
 #import list_comprehensions
 #import lambda_espressioni
@@ -20,5 +20,6 @@ import classi_esempi
 #import numpy_esempio
 #import scope_esercizi
 #import classe_cane_esempio
+import classi_esempi2
 if __name__ == "__main__":
   print("Io sono il main")
