@@ -1,3 +1,4 @@
+print ("*****MATPLOTLIB_ESEMPIO.PY*******")
 import matplotlib.pyplot as plt
 
 #plt.plot([1,2,3,6,4,2,3,4])
