@@ -18,6 +18,7 @@
 #import turtle_esempio
 #import matplotlib_esempio
 #import numpy_esempio
-import scope_esercizi
+#import scope_esercizi
+import classe_cane_esempio
 if __name__ == "__main__":
   print("Io sono il main")
