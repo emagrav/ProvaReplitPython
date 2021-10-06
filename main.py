@@ -15,7 +15,8 @@
 #import wrapper
 #import list_comprehensions
 #import lambda_espressioni
-import turtle_esempio
+#import turtle_esempio
+import matplotlib_esempio
 
 if __name__ == "__main__":
   print("Io sono il main")
