@@ -12,4 +12,10 @@
 #import file_shutil_e_os
 #import file_zip_esempi
 #import classi_esempi
-import wrapper
+#import wrapper
+#import list_comprehensions
+#import lambda_espressioni
+import turtle_esempio
+
+if __name__ == "__main__":
+  print("Io sono il main")

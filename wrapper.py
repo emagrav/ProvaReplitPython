@@ -1,5 +1,9 @@
 print("****WRAPPER*****")
 
+if __name__ == "__main__":
+  print("In Replit non sono dento il file 'main.py' per questo non vengo stampato. Se mi lanci con un editor come VisualStudio Code, invece mi puoi vedere")
+
+print()
 #due modi di usare la tecncia del wrapping
 
 from functools import wraps
@@ -12,7 +16,7 @@ def caps_lock(funzione_parametro):
 
 @caps_lock
 def mia_funz():
-  return "sono piccolo ma carino"
+  return "parto piccolo ma poi cresco"
 
 print(mia_funz())
 
@@ -26,6 +30,6 @@ def funzione_decoratore(funzione_parametro):
   return wrapper()
 
 def mia_funzione():
-    print("sono piccolo ma carino")
+    print("sono piccolo e rimango tale")
     
 funzione_decoratore(mia_funzione)

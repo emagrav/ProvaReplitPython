@@ -12,6 +12,12 @@ class Persona:
     #self.corso=corso
     self.green=green
 
+  def __repr__(self): #richiamabile tramite repr(oggetto)
+    return f"Persona {self.nome} {self.cognome}"
+  
+  def __str__(self): #richiamabile tramite str(oggetto) o anche print oggetto in quanto è il metodo di default
+    return f"Mi chiamo {self.nome} {self.cognome}"
+
   @classmethod #costruttore alternativo!!!
   def inizializza(cls, lista):
     #nome,cognome,eta,corso,green=lista.split(';') #interessante al posto di una lista, posso mettere tante variabili a sinistra quanti sono gli elementi
@@ -32,6 +38,15 @@ class Persona:
     return info + s
   def stampa(self):
     return f"Scheda Persona\n Nome:{self.nome}\n Cognome:{self.cognome}\n Greenpass:{self.green}"
+  
+  def scheda_personale(self):
+    scheda = f"""
+    Nome: {self.nome}
+    Cognome: {self.cognome}
+    Età: {self.eta}
+    Greenpass?: {self.green}
+    +++"""
+    return scheda
   
   def dizionario(self):
     d={}
@@ -71,6 +86,9 @@ class Studente(Persona): #Studente eredita da Persona
     Corso : {self.corso}
     +++"""
     return scheda
+  
+  def __str__(self):
+    return f"Studente {self.nome} {self.cognome}"
 
 studente_uno = Studente("Paolo", "Gnomo", "44", True,"Informatica")
 print(studente_uno.scheda_personale())
@@ -79,5 +97,6 @@ with open("Files/elenco_studenti.csv") as filecsv:
   lettore=csv.reader(filecsv,delimiter=";")
   for riga in lettore:
     print(riga)
+    # TO DO
 
 print(Studente.info_prog("ciao")) #richiamo di un metodo statioco
