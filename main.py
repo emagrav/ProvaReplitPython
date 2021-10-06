@@ -21,7 +21,10 @@
 #import scope_esercizi
 #import classe_cane_esempio
 #import classi_esempi2
-import iteratori
+#import iteratori
+#import date_esempi
+#import unittest_esempi
+import debug_esempio
 
 if __name__ == "__main__":
   print("Io sono il main")
