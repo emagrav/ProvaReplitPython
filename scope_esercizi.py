@@ -48,3 +48,6 @@ def scope_test():
 
 scope_test()
 print("Nello scope globale:", spam)
+
+# Domanda: quanti livelli di annidamento di funzioni posso avere?
+# E quindi quanti nonlocal posso avere?
