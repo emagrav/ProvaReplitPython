@@ -3,7 +3,7 @@ class MatchMode:
   On3SetsLTB = 3
   On5Sets = 5
 
-class SetsGamesMode:
+class NumberOfGames:
   Standard = 6 #On6Games
   On4Games = 4
 
@@ -22,75 +22,77 @@ class CurrentGameMode:
   LongTieBreak = 10
 
 class Match:
-  # (player, [in game, in set, in match])
-  score = {1: [0, 0, 0], 2: [0, 0, 0]}
-  talkingScore = [] # es: ['6-7(5)', '6-3', '10-8']
-
-  def __init__(self, player1, player2, 
-              matchMode = MatchMode.On3Sets, 
-              setsGamesMode = SetsGamesMode.On4Games, 
-              gameMode = GameMode.NoAdv, 
-              whenStartTieBreakInShortGames = WhenStartTieBreakInShortGames.On3All, 
-              startToServe = 1):
+  def __init__(self, player1, player2, matchMode = MatchMode.On3Sets, numberOfGames = NumberOfGames.On4Games, gameMode = GameMode.NoAdv, whenStartTieBreakInShortGames = WhenStartTieBreakInShortGames.On3All, startToServe = 1):
     self.player1 = player1
     self.player2 = player2
     self.matcMode = matchMode
-    self.setsGamesMode = setsGamesMode
+    self.NumberOfGames = NumberOfGames
     self.gameMode = gameMode
     self.whenStartTieBreakInShortGames = whenStartTieBreakInShortGames
     self.startToServe = startToServe
 
     self.currentGameMode = CurrentGameMode.Standard
+    
+    # (player, [in game, in set, in match])
+    self.score = {1: [0, 0, 0], 2: [0, 0, 0]}
+    self.talkingScore = [] # es: ['6-7(5)', '6-3', '10-8']
+
+    self.currentSet = 0 #primo set
   
+  def hasWonTheSet(self):
+    # vinto il set?
+    if self.currentPlayerScore[1] >= self.NumberOfGames \
+      and self.currentPlayerScore[1] - self.currentOtherPlayerScore[1] == 2:
+      return True
+    return False
+
+  def hasWonTheMatch(self):
+    # vinto il match?
+    if self.currentPlayerScore[0] == self.matcMode:
+      return True
+    if self.currentPlayerScore[0] - self.currentOtherPlayerScore[0] == 2:
+      if self.matcMode == 3:
+        return True
+      if self.matcMode == 5 and self.currentPlayerScore[0] > 2:
+        return True
+    return False
+  
+  def currentScore(self):
+    return self.talkingScore
+
   def punto(self, player):
-    otherPlayer = 1 if player == 2 else 1
+    self.player = player
+    self.otherPlayer = 1 if player == 2 else 1
     
     if self.currentGameMode == CurrentGameMode.Standard: #6 games per set
       # ricavo i punteggi attuali dei due giocatori
-      currentPlayerScore = self.score[player]
-      currentOtherPlayerScore = self.score[otherPlayer]
+      self.currentPlayerScore = self.score[player]
+      self.currentOtherPlayerScore = self.score[self.otherPlayer]
       # aggiungo il 15 al giocatore che ha vinto il punto
-      currentPlayerScore[2] += 15 if currentPlayerScore[2] <= 15 else currentPlayerScore[2] + 10
+      self.currentPlayerScore[2] += 15 if self.currentPlayerScore[2] <= 15 else self.currentPlayerScore[2] + 10
       # vinto il game?
-      if currentPlayerScore[2] >= 50 \
-        and currentPlayerScore[2] - currentOtherPlayerScore[2] >= 20:
-        currentPlayerScore[2] = 0
-        currentOtherPlayerScore[2] = 0
-        currentPlayerScore[1] += 1 # un game in più
-        if hasWonTheSet(self, player):
-          if hasWonTheMatch(self, player):
+      if self.currentPlayerScore[2] >= 50 \
+        and self.currentPlayerScore[2] - self.currentOtherPlayerScore[2] >= 20:
+        self.currentPlayerScore[2] = 0
+        self.currentOtherPlayerScore[2] = 0
+        self.currentPlayerScore[1] += 1 # un game in più
+        if self.hasWonTheSet(self):
+          self.talkingScore[self.currentSet] = f"{self.score(1)[1]}-{self.score(2)[1]}"
+          self.currentPlayerScore[1] = 0
+          self.currentOtherPlayerScore[1] = 0
+          self.currentPlayerScore[0] += 1 # 1 set in più
+          if self.hasWonTheMatch(self):
             return True
-            
-        # vinto il set?
-        if currentPlayerScore[1] >= self.setsGamesMode \
-          and currentPlayerScore[1] - currentOtherPlayerScore[1] == 2:
-          currentPlayerScore[1] = 0
-          currentOtherPlayerScore[1] = 0
-          currentPlayerScore[0] += 1 # 1 set in più
-          # vinto il match?
-          if currentPlayerScore[0] == self.matcMode:
-            return True
-          if currentPlayerScore[0] - currentOtherPlayerScore[0] == 2:
-            if self.matcMode == 3:
-              return True
-            if self.matcMode == 5 and currentPlayerScore[0] > 2:
-              return True
         return False
-            
-
-        
           
     elif self.currentGameMode == CurrentGameMode.TieBreak:
       pass
 
-
-
     #if self.matchMode == MatchMode.On3Sets:
 
-    
-incontro = Match(player1 = "Andrea", player2 = "Emanuele", 
-            matchMode = MatchMode.On3SetsLTB, 
-            setsGameMode = SetsGamesMode.Standard, 
-            gameMode = GameMode.NoAdv, 
-            startToServe = 1)
 
+    return False
+    
+incontro = Match(player1 = "Andrea", player2 = "Emanuele", matchMode = MatchMode.On3SetsLTB, numberOfGames = NumberOfGames.Standard, gameMode = GameMode.NoAdv, startToServe = 1)
+incontro.punto(1)
+print(incontro.currentScore())
