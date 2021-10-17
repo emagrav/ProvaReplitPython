@@ -24,7 +24,8 @@
 #import iteratori
 #import date_esempi
 #import unittest_esempi
-import debug_esempio
+#import debug_esempio
+import TennisScore
 
 if __name__ == "__main__":
   print("Io sono il main")
