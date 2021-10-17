@@ -25,7 +25,7 @@ class Match:
   def __init__(self, player1, player2, matchMode = MatchMode.On3Sets, numberOfGames = NumberOfGames.On4Games, gameMode = GameMode.NoAdv, whenStartTieBreakInShortGames = WhenStartTieBreakInShortGames.On3All, startToServe = 1):
     self.player1 = player1
     self.player2 = player2
-    self.matcMode = matchMode
+    self.matchMode = matchMode
     self.NumberOfGames = NumberOfGames
     self.gameMode = gameMode
     self.whenStartTieBreakInShortGames = whenStartTieBreakInShortGames
@@ -34,65 +34,92 @@ class Match:
     self.currentGameMode = CurrentGameMode.Standard
     
     # (player, [in game, in set, in match])
-    self.score = {1: [0, 0, 0], 2: [0, 0, 0]}
-    self.talkingScore = [] # es: ['6-7(5)', '6-3', '10-8']
+    self.scorecard = {"1": {"games":0, "sets":0, "score":0}, "2": {"games":0, "sets":0, "score":0}}
+    self.talkingScoreBySet = [] # es: ['6-7(5)', '6-3', '10-8']
 
     self.currentSet = 0 #primo set
   
   def hasWonTheSet(self):
     # vinto il set?
-    if self.currentPlayerScore[1] >= self.NumberOfGames \
-      and self.currentPlayerScore[1] - self.currentOtherPlayerScore[1] == 2:
+    if self.scorecard[self.player]["games"] >= self.NumberOfGames \
+      and self.scorecard[self.player]["games"] - self.scorecard[self.otherPlayer]["games"] == 2:
       return True
     return False
 
   def hasWonTheMatch(self):
     # vinto il match?
-    if self.currentPlayerScore[0] == self.matcMode:
+    if self.scorecard[self.player]["sets"] == self.matcMode:
       return True
-    if self.currentPlayerScore[0] - self.currentOtherPlayerScore[0] == 2:
-      if self.matcMode == 3:
+    if self.scorecard[self.player]["sets"] - self.scorecard[self.otherPlayer]["sets"] == 2:
+      if self.matchMode== 3:
         return True
-      if self.matcMode == 5 and self.currentPlayerScore[0] > 2:
+      if self.matchMode== 5 and self.currentPlayerScore[0] > 2:
         return True
     return False
   
   def currentScore(self):
-    return self.talkingScore
-
-  def punto(self, player):
+      
+    return self.talkingScoreBySet
+  
+  def updateVisualScoreCard(self):
+      
+    self.talkingScoreBySet.append (f'{self.scorecard["1"]["games"]}-{self.scorecard["2"]["games"]} : {self.scorecard["1"]["score"]}-{self.scorecard["2"]["score"]}')
+  
+  def newPoint(self, player):
+    
+    ret = False
+    
     self.player = player
-    self.otherPlayer = 1 if player == 2 else 1
+    self.otherPlayer = "1" if self.player == "2" else "2"
     
     if self.currentGameMode == CurrentGameMode.Standard: #6 games per set
-      # ricavo i punteggi attuali dei due giocatori
-      self.currentPlayerScore = self.score[player]
-      self.currentOtherPlayerScore = self.score[self.otherPlayer]
+            
+      ###
+      #self.scorecard[self.otherPlayer]
+      ###
+      
       # aggiungo il 15 al giocatore che ha vinto il punto
-      self.currentPlayerScore[2] += 15 if self.currentPlayerScore[2] <= 15 else self.currentPlayerScore[2] + 10
+      self.scorecard[self.player]["score"] += 15 if self.scorecard[self.player]["score"] <= 15 else self.scorecard[self.player]["score"] + 10
+      
+      self.updateVisualScoreCard()
+      
       # vinto il game?
-      if self.currentPlayerScore[2] >= 50 \
-        and self.currentPlayerScore[2] - self.currentOtherPlayerScore[2] >= 20:
-        self.currentPlayerScore[2] = 0
-        self.currentOtherPlayerScore[2] = 0
-        self.currentPlayerScore[1] += 1 # un game in più
+      if self.scorecard[self.player]["score"] >= 50 \
+        and self.scorecard[self.player]["score"] - self.scorecard[self.otherPlayer]["score"] >= 20:
+        
+        # azzero lo score nel game di entrambi
+        self.scorecard[self.player]["score"] = 0
+        self.scorecard[self.otherPlayer]["score"] = 0
+        
+        # un game in più
+        self.scorecard[self.player]["games"] += 1 
+        
+        self.updateVisualScoreCard()
+        
+        # vinto il set?
         if self.hasWonTheSet(self):
-          self.talkingScore[self.currentSet] = f"{self.score(1)[1]}-{self.score(2)[1]}"
-          self.currentPlayerScore[1] = 0
-          self.currentOtherPlayerScore[1] = 0
-          self.currentPlayerScore[0] += 1 # 1 set in più
+          self.scorecard[self.player]["games"] = 0
+          self.scorecard[self.otherPlayer]["games"] = 0
+          
+          # un set in più
+          self.scorecard[self.player]["sets"] += 1
+          
+          self.updateVisualScoreCard()
+                        
+          # vinto il match?
           if self.hasWonTheMatch(self):
             return True
-        return False
-          
-    elif self.currentGameMode == CurrentGameMode.TieBreak:
-      pass
-
-    #if self.matchMode == MatchMode.On3Sets:
-
+          else: #vinto solo il set non ancora il match
+            self.currentSet += 1 #nuovo set  
+    
+    #elif self.currentGameMode == CurrentGameMode.TieBreak:
+    #  pass
 
     return False
-    
+
+#########   
+## inizio
+#########
 incontro = Match(player1 = "Andrea", player2 = "Emanuele", matchMode = MatchMode.On3SetsLTB, numberOfGames = NumberOfGames.Standard, gameMode = GameMode.NoAdv, startToServe = 1)
-incontro.punto(1)
+incontro.newPoint("1")
 print(incontro.currentScore())
