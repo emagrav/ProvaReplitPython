@@ -35,10 +35,8 @@ class GameMode(Enum):
 class Game: 
   gameMode = None
   advantageType = None
-  
   playerWonThePoint = 0 # può valere 1 o 2
   playerLoseThePoint = 0 # vale l'altro valore della variabile precedente
-  
   playedPoints = 0 # totale corrente dei punti giocati nel game
   score = [] # es. [40, 15] ovvero [50, 40] 50 è da considerarsi vantaggio , oppure [9, 8] in un tie break
   
@@ -87,7 +85,7 @@ class Game:
     else:
       # caso tie break o long tie break
       # il game lo vince se c'è una differenza di 2 col punteggio dell'avversario
-      if self.score[i] > self.gameMode and self.score[i] - self.score[j] > 1:
+      if self.score[i] > self.gameMode.value and self.score[i] - self.score[j] > 1:
           return True
 
     return False
@@ -119,15 +117,12 @@ class Set:
   Gestisce tutto quanto di competenza del set
   """
   setMode = None
-  
   setLength = None
   tieBreakStart = None
   advantageType = None
-
   score = [0, 0] # es. [4, 2] oppure [6, 6]
   visualScore = "" # punteggio nel set es. "4-2" oppure "6-6"
   totGames = 0 # totale corrente dei game giocati
-  
   game = None # il riferimento al game corrente
 
   def __str__(self) -> str:
@@ -193,7 +188,6 @@ class Match:
   '''
   player1Name = ""
   player2Name = ""
-  
   matchType = None
   setLength = None
   advantageType = None
@@ -295,5 +289,3 @@ class Match:
 incontro = Match(player1Name = "Andrea", player2Name = "Emanuele", matchType = MatchType.On3SetsLTB, setLength = SetLength.On4Games, advantageType = AdvantageType.NoAdv, tieBreakStart = TieBreakStart.On3All, startToServe = 1)
 incontro.newPoint(1)
 print(incontro.getVisualScore())
-
-
