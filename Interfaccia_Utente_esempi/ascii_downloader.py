@@ -1,5 +1,5 @@
 import tkinter as tk
-#import requests
+import requests
 
 def download_ascii():
     # verifico se la stringa che restituisce il metodo get del widget Entry sia non nulla (True)
