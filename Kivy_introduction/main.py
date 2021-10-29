@@ -6,8 +6,9 @@ from kivy.lang import Builder
 # che sarà al centro dello schermo (x=0.5, y=0.5)
 KV = """
 Screen: # Screen è il widget di primo livello (root)
-
-    MDRectangleFlatButton: #Screen contiene un pulsante piatto rettangolare
+    # pensavo di poter mettere qui anche le impostazioni di screen e invece le prende solo nel metodo build
+    # title: "Hello Kitty! :)" 
+    MDRectangleFlatButton: #esso contiene un pulsante piatto rettangolare
         #text: "Bello lu pulsante!" # con un testo 
         text: "Hello Kivy World!" # con un testo 
         #pos_hint: {"center_x": 0.5, "center_y": 0.5} # e la posizione del suo centro all'interno dello Screen
@@ -20,7 +21,7 @@ Screen: # Screen è il widget di primo livello (root)
 
 class MainApp(MDApp): # sto estendendo MDApp
     def build(self):
-        self.title = "Hello Kivy"
+        self.title = "Hello Kivy" # se non impostato = Main
         self.theme_cls.theme_style = "Dark" # Light
         self.theme_cls.primary_palette = "Red"
         return Builder.load_string(KV)
