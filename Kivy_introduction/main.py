@@ -1,4 +1,10 @@
+# Per poter creare delle classi che conterranno quei metodi che permetteranno
+# di creare la nostra applicazione
 from kivymd.app import MDApp
+
+# Per effettuare il parsing delle istruzioni specifiche relative 
+# al layout e ai vari widget che comporranno la schermata della 
+# nostra app
 from kivy.lang import Builder
 
 # In questa stringa multiriga vado a specificare i componenti utilizzati dall'app e le loro proprietà
@@ -20,9 +26,10 @@ Screen: # Screen è il widget di primo livello (root)
 
 
 class MainApp(MDApp): # sto estendendo MDApp
-    def build(self):
+    def build(self): # sto ridefinendo build di MDApp
         self.title = "Hello Kivy" # se non impostato = Main
         self.theme_cls.theme_style = "Dark" # Light
+        # vai su https://kivymd.readthedocs.io/en/latest/themes/color-definitions/
         self.theme_cls.primary_palette = "Red"
         return Builder.load_string(KV)
 
