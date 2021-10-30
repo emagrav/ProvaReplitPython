@@ -34,3 +34,6 @@ class MainApp(MDApp): # sto estendendo MDApp
         return Builder.load_string(KV)
 
 MainApp().run()
+# Per poter creare alla fine l'apk Android 
+# lanciare il seguente comando:
+#       buildozer android debug
