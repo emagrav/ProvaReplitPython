@@ -1,0 +1,5 @@
+Per configurare l'ambiente di test di VS Code ed eseguirli, bisogna aprire come root directory la cartella
+contenente questo stesso file e gli script python di prova. Poi Ctrl-Shift-P, selezionare "Python: Configure
+ Tests", poi a seconda del tipo di framework di testing, unittest o pytest, poi ". Root directory" ed infine
+ come pttern per identificare i file che contengono i test "test_*.py Python files beginning with test_" perché
+ così ho scelto di chiamarli
