@@ -1,3 +1,7 @@
+"""
+Il modulo commento
+==================
+"""
 def average(a, b) -> float:
     """
     Return the average value (arithmetic mean) of two numbers.
