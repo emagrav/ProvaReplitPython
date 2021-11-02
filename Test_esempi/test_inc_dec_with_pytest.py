@@ -6,15 +6,13 @@ def test_increment():
 def test_decrement():
     assert inc_dec.decrement(3) == 4
   
-""" 
-def test_upper(self):
+def test_upper():
     #self.assertEqual("foo".upper(), 'FOO')
     assert "foo".upper() == 'FOO'
 
-def test_isupper(self):
+def test_isupper():
     assert "FOO".isupper()
     assert not "foo".isupper()
     
-def test_islower(self):
+def test_islower():
     assert "FOO".islower() 
-"""
