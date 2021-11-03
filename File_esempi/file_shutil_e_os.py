@@ -2,15 +2,24 @@ print("************FILE SHUTIL e OS****************")
 
 import os
 import shutil
+from pathlib import Path
 
-shutil.copy("Files/pippo.txt","Files/pluto.txt")
-shutil.copy("Files/pippo.txt","Files/plutos.txt")
+# ricavo l'oggetto Path associato a questo stesso file di script 
+cur_path = Path(os.path.realpath(__file__))
+# ricavo quindi il path assoluto della sua directory
+parent_dir = cur_path.parent.absolute()
+# ora il path della directory superiore
+path = str(parent_dir.parent.absolute())
 
+shutil.copy(path + "/Files/pippo.txt", path + "/Files/pluto.txt")
+shutil.copy(path + "/Files/pippo.txt", path + "/Files/plutos.txt")
+
+# altri metodi molto usati di shutils:
 #shutils.move
 #shutils.copytree
 #shutils.rmtree
 
-os.unlink("Files/plutos.txt") #elimina definitivamente plutos
+os.unlink(path + "/Files/plutos.txt") #elimina definitivamente plutos
 
 lista=os.listdir(os.getcwd()) #ottengo lista dei file nella directory corrente (cwd=current working directory)
 print(lista)
