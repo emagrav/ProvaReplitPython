@@ -1,4 +1,4 @@
-#import primi_passi
+import primi_passi
 #import standard_library
 #import funzioni
 #import disassemblare
@@ -25,7 +25,7 @@
 #import date_esempi
 #import unittest_esempi
 #import debug_esempio
-import TennisScore
+#import TennisScore
 
 if __name__ == "__main__":
   print("Io sono il main")
